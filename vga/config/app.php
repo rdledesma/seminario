@@ -156,6 +156,7 @@ return [
         vga\Providers\AuthServiceProvider::class,
         vga\Providers\EventServiceProvider::class,
         vga\Providers\RouteServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
