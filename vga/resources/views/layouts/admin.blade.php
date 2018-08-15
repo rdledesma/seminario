@@ -90,6 +90,7 @@
                 <li><a href="{{url('deposito/categoria')}}"><i class="fa fa-circle-o"></i>Categorías</a></li>
                 <li><a href="{{url('deposito/lista')}}"><i class="fa fa-circle-o"></i>Lista de Precios</a></li>
                 <li><a href="{{url('deposito/stock')}}"><i class="fa fa-circle-o"></i>Stock</a></li>
+                <li><a href="{{url('deposito/escala')}}"><i class="fa fa-circle-o"></i>Medidas</a></li>
               </ul>
             </li>
             
