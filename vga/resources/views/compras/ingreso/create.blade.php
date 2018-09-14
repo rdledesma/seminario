@@ -22,7 +22,8 @@
 		<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 			<div class="form-group">
 				<label>Proveedor</label>
-				<select name="idproveedor" id="idproveedor" class="form-control selectpicker" data-live-search="true">
+				<select required name="idproveedor" id="idproveedor" class="form-control selectpicker" data-live-search="true">
+					<option  selected value = "">Selecione Proveedor</option>
 					@foreach($personas as $persona)
 						<option value="{{$persona->idpersona}}">{{$persona->nombre}} {{$persona->numero_documento}}</option>
 					@endforeach
@@ -55,6 +56,7 @@
 						<select name="pidarticulo" class="form-control selectpicker" data-live-search="true" id="pidarticulo" >
 							@foreach($articulos as $articulo)
 							<option value="{{$articulo->idarticulo}}">{{$articulo->articulo}}</option>
+							<option selected></option>
 							@endforeach
 						</select>
 					</div>
@@ -93,7 +95,7 @@
 							<th>Subtotal</th>
 						</thead>
 						<tfoot>
-							<th>TOTAL</th>
+							<th></th>
 							<th></th>
 							<th></th>
 							<th></th>
@@ -124,6 +126,7 @@
 	$(document).ready(function(){
 		$("#bt_add").click(function(){
 			agregar();
+			$("#pidarticulo").selectpicker('refresh');
 		});
 	});
 
@@ -144,7 +147,7 @@
 			subtotal[cont]=(cantidad*precio_compra);
 			total = total + subtotal[cont];
 
-			var fila = '<tr class="select" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+')">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td></td><td><input type="number" name="cantidad[]" value="'+cantidad+'"></td><td><input type="number" name="precio_compra[]" value="'+precio_compra+'"></td><td><input type="number" name="precio_venta[]" value="'+precio_venta+'"></td><td>'+subtotal[cont]+'</td></tr>';
+			var fila = '<tr class="select" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+')">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td></td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="hidden" name="precio_compra[]" value="'+precio_compra+'">'+precio_compra+'</td><td><input type="hidden" name="precio_venta[]" value="'+precio_venta+'">'+precio_venta+'</td><td>'+subtotal[cont]+'</td></tr>';
 			cont++;
 			limpiar();
 			$("#htotal").html("TOTAL$/ "+total);
@@ -164,6 +167,8 @@
 		$("#pcantidad").val("");
 		$("#pprecio_venta").val("");
 		$("#pprecio_compra").val("");
+		document.getElementById('pidarticulo').value="";
+		$('#pidarticulo').selectpicker('refresh');
 	}
 
 	function evaluar(){

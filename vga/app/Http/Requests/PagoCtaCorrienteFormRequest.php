@@ -13,7 +13,7 @@ class PagoCtaCorrienteFormRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,10 @@ class PagoCtaCorrienteFormRequest extends Request
     public function rules()
     {
         return [
-            'idventa'=>'required',
-            'importe'=>'required',
-            'paga_con'=>'required',
-            'vuelto'=>'required'
+            'idventa'=>'numeric',
+            'importe'=>'numeric',
+            'paga_con'=>'numeric',
+            'vuelto'=>'numeric',
         ];
     }
 }

@@ -18,6 +18,28 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-lg-2 col-sm-1 col-md-1 col-xs-1">
+			<div class="form-group">
+				<h3 for="Proveedor">Importe: {{$venta->total}}</h3>
+			</div>
+		</div>
+		<div class="col-lg-2 col-sm-1 col-md-1 col-xs-1">
+			<div class="form-group">
+			<h3>Saldo: {{$venta->saldo}}</h3>
+			</div>
+		</div>
+		<div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+			<div class="form-group">
+				<h3>Estado: {{$venta->estado}} 
+				@if($venta->estado == 'Deuda')
+				<a href="" data-target="#modal-create-{{$venta->idventa}}" data-toggle="modal"><button class="btn btn-success">Registrar Pago</button></a>
+				
+				@endif
+				</h3>
+			</div>
+		</div>
+	</div>
 	
 	<div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
@@ -33,30 +55,18 @@
 				</thead>
 				@foreach ($pagos as $pago)
 				<tr>
-					<td>{{$ven->persona}}</td>
-					<td>{{$ven->fecha_venta}}</td>
-					<td>{{$ven->estado}}</td>
-					<td>{{$ven->total}}</td>
-					<td>{{$ven->saldo}}</td>
-					<td>
-						<a href="{{URL::action('PagoCtaCorrienteController@show',$ven->idventa)}}"><button class="btn btn-info">Ver</button></a>
-						
-						<a href=""><button class="btn btn-success">Reg. Pago</button></a>
-
-						
-					</td>
+					<td>{{$pago->fecha}}</td>
+					<td>{{$pago->importe}}</td>
+					<td>{{$pago->paga_con}}</td>
+					<td>{{$pago->vuelto}}</td>
 					
 				</tr>
 				
 				@endforeach
 			</table>
 		</div>
-		{{$ventas->render()}}
+		{{$pagos->render()}}
 	</div>
 
 </div>
-
-		
-	
-
 @endsection

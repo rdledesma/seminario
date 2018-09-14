@@ -88,10 +88,11 @@
 				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 					<div class="form-group">
 						<label>Artículo</label>
-						<select name="pidarticulo" class="form-control selectpicker" data-live-search="true" id="pidarticulo" >
+						<select name="pidarticulo"  class="form-control selectpicker" data-live-search="true" id="pidarticulo" >
 							
 							@foreach($articulos as $articulo)
 								<option value="{{$articulo->idarticulo}}_{{$articulo->stock}}_{{$articulo->precio_venta}}">{{$articulo->articulo}}</option>
+								<option selected="selected"></option>
 							@endforeach
 							
 						</select>
@@ -217,10 +218,10 @@
 			{
 				subtotal[cont]=(cantidad*precio_venta-descuento);
 				subtotaldescuento[cont]=(cantidad*precio_venta-descuento)/descuentotal;
-		
+				valart = cantidad.toString();
 				totalventa = (total + subtotal[cont]);
 				total = totalventa/descuentotal;
-				var fila = '<tr class="select" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+')">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td></td><td><input type="number" name="cantidad[]" value="'+cantidad+'"></td><td><input type="number" name="precio_venta[]" value="'+precio_venta+'"></td><td><input type="number" name="descuento[]" value="'+descuento+'"></td><td>'+subtotal[cont]+'</td></tr>';
+				var fila = '<tr class="select" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+')">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td></td><td><input type="hidden"  name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="hidden" name="precio_venta[]" value="'+precio_venta+'">'+precio_venta+'</td><td><input type="hidden" name="descuento[]" value="'+descuento+'">'+descuento+'</td><td>'+subtotal[cont]+'</td></tr>';
 				cont++;
 				limpiar();
 				$("#htotalventa").html("$ "+totalventa);
@@ -251,7 +252,10 @@
 	function limpiar(){
 		$("#pcantidad").val("");
 		$("#pprecio_venta").val("");
+		$("#pstock").val("");		
 		$("#pdescuento").val("0");
+		document.getElementById('pidarticulo').value="";
+		$('#pidarticulo').selectpicker('refresh');
 	}
 
 	function evaluar(){
@@ -270,6 +274,7 @@
 		preciofinal = total/descuentotal
 		$("#htotal").html("TOTAL$/"+total);
 		$("#htotalventa").html("TOTAL$/"+preciofinal);
+		
 		$("#fila" + index).remove();
 		evaluar();
 	}

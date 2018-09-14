@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('pagos/corriente/create/{idventa}','PagoCtaCorrienteController@crear');
+Route::post('pagos/corriente/create/{idventa}','PagoCtaCorrienteController@store');
 
 Route::get('deposito/lista/show/{idlista_precio}', 'PrecioController@detalle');
 Route::get('deposito/articulo/reporte', 'ArticuloController@reporte');

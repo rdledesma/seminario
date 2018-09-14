@@ -17,36 +17,37 @@ class CategoriaTest extends TestCase
     {
         $this->visit('deposito/categoria/create')
             ->see('Nueva Categoria')
-            ->type('Aerosol','nombre')
-            ->type('Todos los aerosoles', 'descripcion')
+            ->type('NombreCategoria','nombre')
+            ->type('DescripciónDeCategoría', 'descripcion')
             ->press('Guardar')
             ->seePageIs('deposito/categoria')
-            ->SeeInDatabase('categoria', ['idcategoria'=>'26', 'nombre' => 'categoría 1'])
-            ->see('categoría 1');
+            ->SeeInDatabase('categoria', ['idcategoria'=>'1', 'nombre' => 'NombreCategoria'])
+            ->see('NombreCategoria');
     }
 
 
     public function EditarCategoria()
     {   
         $this->visit('deposito/categoria/1/edit')
-            ->see('Editar Categoria:Aerosol')
-            ->see('Aerosol')
-            ->see('Todos los aerosoles')
-            ->type('Aerosoles tipo común', 'descripcion')
+            ->see('Editar Categoria:NombreCategoria1')
+            ->see('Nombre Categoria1')
+            ->see('DescripciónDeCategoría1')
+            ->type('DescripciónDeCategoría2', 'descripcion')
             ->press('Guardar')
             ->seePageIs('deposito/categoria')
-            ->see('a')
-            ->see('Aerosoles tipo común');
+            ->see('Nombre Categoria1')
+            ->see('DescripciónDeCategoría2');
     }
 
     public function EliminarCategoria()
     {
         $this->visit('deposito/categoria/')
-            ->see('Aerosol')
+            ->see('Categoría')
             ->click('Eliminar')
             ->see('Eliminar Categoria')
             ->click('Confirmar')
-            ->SeeInDatabase('categoria', ['condicion'=>'0', 'nombre' => 'Aerosol']);
+            ->SeeInDatabase('categoria', ['condicion'=>'0', 'nombre' => 'Categoria']);
+
     }
 
 

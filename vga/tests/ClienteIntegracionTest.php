@@ -23,20 +23,18 @@ class ClienteIntegracionTest extends TestCase
         ->click('Nuevo')
             ->visit('ventas/cliente/create')
             ->see('Nuevo Cliente')
-                ->type('Dario Ledesma', 'nombre' )
-                ->type('DNI', 'tipo_documento')
-                ->type('10111011', 'numero_documento' )
+                ->type('José Matorras', 'nombre' )
+                ->type('30125068', 'numero_documento' )
                 ->type('Av. SiempreViva 123', 'direccion' )
-                ->type('154892', 'telefono' )
-                ->type('dario@gmail.com', 'email' )
+                ->type('4253822', 'telefono' )
                 ->press('Guardar')
             ->seePageIs('ventas/cliente/')
-        ->see('Dario Ledesma')
+        ->see('José Matorras')
         ->click('Eliminar')
             ->see('Eliminar Cliente')
             ->press('Confirmar')
         ->seePageIs('ventas/cliente')
-        ->SeeInDatabase('persona', ['tipo_persona'=>'Inactivo', 'nombre' => 'Dario Ledesma']);
+        ->SeeInDatabase('persona', ['estado'=>'Inactivo', 'nombre' => 'José Matorras']);
 
      }
 }

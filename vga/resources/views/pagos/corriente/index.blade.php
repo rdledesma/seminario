@@ -33,9 +33,9 @@
 					<td>
 						<a href="{{URL::action('PagoCtaCorrienteController@show',$ven->idventa)}}"><button class="btn btn-info">Ver</button></a>
 						
-						<a href=""><button class="btn btn-success">Reg. Pago</button></a>
+						<a href="{{URL::action('PagoCtaCorrienteController@crear',$ven->idventa)}}" data-target="#modal-delete-{{$ven->idventa}}" data-toggle="modal"><button class="btn btn-success">Reg. Pago</button></a>
 
-						
+						@include('pagos.corriente.create')
 					</td>
 					
 				</tr>
