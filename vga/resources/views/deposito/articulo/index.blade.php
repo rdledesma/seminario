@@ -13,7 +13,7 @@
 		<div class="table-resposive">
 			<table class="table table-striped table-bordered table-condensed table-hover">
 				<thead>
-					<th>Codigo</ht>
+					<th>Codigo</th>
 					<th>Nombre</th>
 					<th>Medida o Escala</th>
 					<th>Categoría</th>

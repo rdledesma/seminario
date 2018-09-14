@@ -24,7 +24,7 @@ class EscalaController extends Controller
 		{
 			$query=trim($request->get('searchText'));
             $escalas=DB::table('escala')->where('nombre','LIKE','%'.$query.'%')
-			->where('estado','=','1')
+			->where('estado','=','Activa')
 			->orderBy('idescala','desc')
 			->paginate(7);
 			return view('deposito.escala.index',["escalas"=>$escalas, "searchText"=>$query]);
@@ -41,7 +41,7 @@ class EscalaController extends Controller
         $escala = new Escala;	
 		$escala->nombre = $request->get('nombre');
 		$escala->descripcion = $request->get('descripcion');
-		$escala->estado = '1';
+		$escala->estado = 'Activa';
 
 		$escala->save();
 		return Redirect::to('deposito/escala'); //para redireccionar al listado de categorias luego de alamacenar el nuevo objeto
@@ -70,7 +70,7 @@ class EscalaController extends Controller
     public function destroy($id)
     {
         $escala = Escala::findOrFail($id);
-		$escala->estado = 0;
+		$escala->estado = 'Descativada';
 		$escala->update();
 		return Redirect::to('deposito/escala');
     }

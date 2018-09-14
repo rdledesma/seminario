@@ -67,7 +67,7 @@
 				<label for="escala">Escala</label>
 				<select name="idescala" class="form-control">
 					@foreach($escalas as $esc)
-						<option value="{{$cat->idcategoria}}">{{$esc->nombre}}</option>
+						<option value="{{$esc->idescala}}">{{$esc->nombre}}</option>
 					@endforeach
 				</select>
 			</div>

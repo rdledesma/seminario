@@ -2,7 +2,7 @@
 @section ('contenido')
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-		<h3>Fecha Modificación: {{$lista->fecha_mod}}</h3>
+		<h3>Fecha Modificación: </h3>
 	</div>
 </div>
 
@@ -19,7 +19,7 @@
 				
 				@foreach ($detalle as $det)
 				<tr>
-					<td>{{$det->idarticulo}}</td>
+					<td>{{$det->articulo}}</td>
 					<td>{{$det->antiguo_precio}}</td>
 					<td>{{$det->nuevo_precio}}</td>
 				</tr>

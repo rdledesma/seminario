@@ -34,3 +34,4 @@ Route::resource('compras/ingreso','IngresoController');
 Route::resource('ventas/cliente','ClienteController');
 Route::resource('ventas/venta','VentaController');
 
+Route::resource('pagos/corriente','PagoCtaCorrienteController');

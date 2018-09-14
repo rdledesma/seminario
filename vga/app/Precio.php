@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Precio extends Model
 {
     //1 declarar a que tabla se hará referencia
-    protected $table = 'lista_precio';
+    protected $table = 'precio';
     //2 indicar el atributo primary key del modelo
     protected $primaryKey = 'idlista_precio';
 

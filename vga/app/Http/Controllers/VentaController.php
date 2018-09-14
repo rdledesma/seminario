@@ -75,6 +75,9 @@ class VentaController extends Controller
             $venta->factura = $request->get('factura');
             $venta->descuento = 0;
             $venta->forma_pago = $request->get('forma_pago');
+            $venta->fecha_venta = $mytime->toDateTimeString($request->get('fecha'));
+            $venta->precioventatotal = $request->get('totalventa');
+            $venta->total = $request->get('total');
             if ($request->get('factura') == 'A')
             {
                 $venta->descuento = 1.21;
@@ -85,14 +88,12 @@ class VentaController extends Controller
                 $venta->saldo = 0;
                 $venta->estado ='Pagado';
             }
-            else
+            elseif($request->get('tipo_pago') == 'Cuenta Corriente')
             {
                 $venta->saldo = $venta->total;
                 $venta->estado ='Deuda';
             }
-            $venta->fecha_venta = $mytime->toDateTimeString($request->get('fecha'));
-            $venta->precioventatotal = $request->get('totalventa');
-            $venta->total = $request->get('total');
+            
 			$venta->save();
 
 			$idarticulo = $request->get('idarticulo');
@@ -158,17 +159,29 @@ class VentaController extends Controller
     public function imprimir($id)
     {
         
-            $persona = Venta::join("persona","persona.idpersona","=","venta.idpersona")
-            ->where('venta.idventa','=',$id)
-            ->select(DB::raw("persona.nombre, persona.direccion as dir, persona.numero_documento as nro"))
-            ->skip(0)
-            ->take(1)
-            ->get();
+        $venta= DB::table('venta as v')
+        ->where('v.idventa','=',$id)
+		->first();
+        
+        $persona=DB::table('persona as per')
+        ->where('per.idpersona','=',$venta->idpersona)
+        ->first();
 
-            $pdf = \App::make('dompdf.wrapper');
+        $detalle = DB::table('detalleventa as dv')
+        ->join('articulo as a','dv.idarticulo','=','a.idarticulo')
+        ->select('a.nombre as articulo', 'dv.precio_venta', 'dv.cantidad', 'dv.subtotal', 'dv.descuento')
+        ->where('dv.idventa','=',$id)
+        ->get();
+
+		
+		return view("ventas.venta.facturaA",["venta"=>$venta, "persona"=>$persona, "detalle"=>$detalle]);
+
+            /*$pdf = \App::make('dompdf.wrapper');
             $pdf->loadView('ventas/venta/facturaA', ['persona' => $persona[0]]);
             $aux = ".pdf";
             return $pdf->stream((string)$id.' '.$aux, 1);
+            */
+            return view("ventas.venta.facturaA", ["persona" => $persona, "detalle"=>$detalle]);
 
         
     }

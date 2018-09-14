@@ -40,7 +40,7 @@ class ArticuloController extends Controller
 	public function create()
 	{
 		$categorias = DB::table('categoria')->where('condicion','=','1')->get();
-		$escalas = DB::table('escala')->where('estado','=','1')->get();
+		$escalas = DB::table('escala')->where('estado','=','Activa')->get();
 		return view("deposito.articulo.create",["categorias"=>$categorias, "escalas"=>$escalas]);
 	}
 
@@ -76,7 +76,7 @@ class ArticuloController extends Controller
 
 		$articulo = Articulo::findOrFail($id);
 		$categorias=DB::table('categoria')->where('condicion','=','1')->get();
-		$escalas = DB::table('escala')->where('estado','=','1')->get();
+		$escalas = DB::table('escala')->where('estado','=','Activa')->get();
 		return view("deposito.articulo.edit",["articulo"=>$articulo,"categorias"=>$categorias, "escalas"=>$escalas]);
 	}	
 

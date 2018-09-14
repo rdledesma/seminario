@@ -10,7 +10,7 @@ use vga\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use vga\Http\Requests\PrecioFormRequest;
-use vga\ListaPrecio;
+use vga\DetallePrecio;
 use vga\Precio;
 use DB;
 
@@ -39,9 +39,6 @@ class PrecioController extends Controller
             ->where('a.estado','=','Activo')
             ->orderBy('a.idarticulo','desc')
             ->paginate(7);
-			$precios = DB::table('lista_precio as l')
-			->join('precio as p','p.idlista_precio','=','l.idlista_precio')
-			->paginate(7);
 			return view('deposito.lista.index',["articulos"=>$articulos ,"searchText"=>$query]);
 		}
 	}
@@ -75,7 +72,7 @@ class PrecioController extends Controller
 
 			while ($cont<count($idarticulo)) {
 				
-				$detalle = new ListaPrecio;
+				$detalle = new DetallePrecio;
 				$detalle->idlista_precio = $precio->idlista_precio;
 				$detalle->idarticulo = $idarticulo[$cont];
 				$detalle->antiguo_precio = $antiguo_precio[$cont];
@@ -91,12 +88,21 @@ class PrecioController extends Controller
 	}
 
 
-	public function show()
+	public function show(Request $request)
 	{
-			$lista= DB::table('lista_precio as l')
-			->paginate(7);
+	
+			$query = trim($request->get('searchText'));
+			$lista= DB::table('precio as p')
+			->join('detalle_precio as dp','dp.idlista_precio','=','p.idlista_precio')
+			->join('articulo as art','art.idarticulo','=','dp.idarticulo')
+			->join('escala as es','art.idescala','=','es.idescala')
+			->select('p.fecha_mod', DB::raw('CONCAT(art.codigo," ",art.nombre," ",es.nombre) AS articulo'),'dp.antiguo_precio','dp.nuevo_precio')
+			->where('p.fecha_mod','LIKE','%'.$query.'%')
+			->orderBy('p.fecha_mod','desc')
+			->paginate(20);
+	
+			return view("deposito.lista.show",["detalle"=>$lista , "searchText"=>$query]);
 
-		return view("deposito.lista.showlista",["lista"=>$lista]);
 	}
 
 	public function detalle($id)

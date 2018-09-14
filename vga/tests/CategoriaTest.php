@@ -21,8 +21,8 @@ class CategoriaTest extends TestCase
             ->type('Todos los aerosoles', 'descripcion')
             ->press('Guardar')
             ->seePageIs('deposito/categoria')
-            ->SeeInDatabase('categoria', ['idcategoria'=>'1', 'nombre' => 'b'])
-            ->see('Aerosol');
+            ->SeeInDatabase('categoria', ['idcategoria'=>'26', 'nombre' => 'categoría 1'])
+            ->see('categoría 1');
     }
 
 

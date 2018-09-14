@@ -65,7 +65,7 @@
 					<option value='2 Cuotas'>2 Coutas Fijas</option>
 					<option value='3 Cuotas'>3 Coutas Fijas</option>
 					<option value='4 Cuotas'>4 Coutas Fijas</option>
-					<option value='Cta. Cte.'>Cuenta Corriente</option>
+					<option value='Cuenta Corriente'>Cuenta Corriente</option>
 				</select>
 				
 			</div>
