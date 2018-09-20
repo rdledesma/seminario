@@ -24,11 +24,18 @@
 				@foreach ($ingresos as $ing)
 				<tr>
 					<td style="display:none;">{{$ing->idingreso}}</td>
-					<td>{{$ing->nro_factura}}</td>
-					<td>{{$ing->nombre}} {{$ing->numero_documento}}</td>
-					<td>{{$ing->fecha_ingreso}}</td>
-					<td>{{$ing->total}}</td>
-					<td>{{$ing->estado}}</td>
+					<td name="factura">{{$ing->nro_factura}}</td>
+					<td name="proveedor">{{$ing->nombre}} {{$ing->numero_documento}}</td>
+					<td name="fecha">
+
+					<?php
+					$date = new DateTime($ing->fecha_ingreso);
+					echo $date->format('d-m-Y H:i');
+					?>
+					</td>
+					
+					<td name="total">{{$ing->total}}</td>
+					<td name="estado">{{$ing->estado}}</td>
 					<td>
 						<a href="{{URL::action('IngresoController@show',$ing->idingreso)}}"><button class="btn btn-primary">Ver</button></a>
 						

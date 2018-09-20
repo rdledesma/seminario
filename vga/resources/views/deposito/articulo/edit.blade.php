@@ -2,7 +2,7 @@
 @section ('contenido')
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-		<h3>Editar Articulo:{{$articulo->nombre}}</h3>
+		<h3>Editar Articulo: {{$articulo->nombre}}</h3>
 		<!--validando los datos ingresados con request -->
 		@if (count($errors)>0)
 		<div class="alert alert-danger">
@@ -37,8 +37,7 @@
 						@if($cat->idcategoria==$articulo->idcategoria)
 							<option value="{{$cat->idcategoria}}" selected>{{$cat->nombre}}</option>
 						@else
-							<option value="{{$cat->idcategoria}}">{{$cat->nombre}}>
-							</option>
+							<option value="{{$cat->idcategoria}}">{{$cat->nombre}}></option>
 						@endif
 					@endforeach
 				</select>

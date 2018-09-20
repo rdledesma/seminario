@@ -20,7 +20,10 @@
 <p style="font-size: 9px; margin: 0.2%;" align="CENTER">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <p style="font-size: 9px; margin: 0.2%;" align="CENTER">&nbsp;</p>
 <p style="font-size: 9px; margin: 0.2%;" align="CENTER">&nbsp;</p>
-<p style="font-size: 15px; margin: 0.2%; text-align: left;" align="CENTER">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$venta->fecha_venta}} </p>
+<p style="font-size: 15px; margin: 0.2%; text-align: left;" align="CENTER">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php
+					$date = new DateTime($venta->fecha_venta);
+					echo $date->format('d/m/Y H:i');
+					?> </p>
 </td>
 </tr>
 <tr style="height: 4px;">

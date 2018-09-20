@@ -20,7 +20,12 @@
 				@foreach ($lista as $l)
 				<tr>
 					<td>{{$l->idlista_precio}}</td>
-					<td>{{$l->fecha_mod}}</td>
+					<td>
+					<?php
+					$date = new DateTime($l->fecha_mod);
+					echo $date->format('d-m-Y H:i');
+					?>
+					</td>
 					<td>{{$l->cantidad_mod}}</td>
 					<td><a href="{{URL::action('PrecioController@detalle',$l->idlista_precio)}}"><button class="btn btn-primary">Ver</button></a></td>
 				</tr>

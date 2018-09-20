@@ -1,7 +1,6 @@
 @extends ('layouts.admin')
 @section ('contenido')
 
-
 <div class="row">
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 	<h3>Listado de Ventas <a href="venta/create"><button class="btn btn-success">Nueva Venta</button></a></h3>
@@ -26,13 +25,17 @@
 				</thead>
 				@foreach ($ventas as $ven)
 				<tr>
-					<td>{{$ven->idventa}}</td>
-					<td>{{$ven->fecha_venta}}</td>
-					<td>{{$ven->nombre}}</td>
-					<td>{{$ven->estado}}</td>
-					<td>{{$ven->factura}}</td>
-					<td>{{$ven->total}}</td>
-					<th>{{$ven->saldo}}</td>
+					<td name="id">{{$ven->idventa}}</td>
+					<td name="fecha">
+					<?php
+					$date = new DateTime($ven->fecha_venta);
+					echo $date->format('d-m-Y H:i');
+					?></td>
+					<td name="cliente">{{$ven->nombre}}</td>
+					<td name="estado">{{$ven->estado}}</td>
+					<td name="fatctura">{{$ven->factura}}</td>
+					<td name="total">{{$ven->total}}</td>
+					<th name="saldo">{{$ven->saldo}}</td>
 					<td>
 						<a href="{{URL::action('VentaController@show',$ven->idventa)}}"><button class="btn btn-primary">Ver</button></a>
 						<a href="{{URL::action('VentaController@imprimir',$ven->idventa)}}" target="_blank"><button class="btn btn-info">Imprimir</button></a>

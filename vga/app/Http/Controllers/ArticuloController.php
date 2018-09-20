@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use vga\Http\Requests;
 use vga\Articulo;
+use vga\Categoria;
+use vga\Escala;
 use vga\Http\Requests\ArticuloFormRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -68,7 +70,13 @@ class ArticuloController extends Controller
 
 	public function show($id)
 	{
-		return view("deposito.articulo.show",["articulo"=>Articulo::findOrFail($id)]);
+		$articulo = Articulo::findOrFail($id)
+		->first();
+		$categoria = Categoria::findOrFail($articulo->idcategoria)
+		->first();
+		$escala = Escala::findOrFail($articulo->idescala)
+		->first();
+		return view("deposito.articulo.show",['articulo'=>$articulo , 'categoria'=>$categoria , 'escala'=>$escala]);
 	}
 
 	public function edit($id)

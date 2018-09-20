@@ -47,14 +47,14 @@
 				<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 					<div class="form-group">
 						<label for="nuevo">Nuevo Stock</label>
-						<input type="number" min="0" name="descuento" id="pnuevo_stock" class="form-control" placeholder="Nueva Cantidad">
+						<input type="number" min="0" name="pnuevo_stock" id="pnuevo_stock" class="form-control" placeholder="Nueva Cantidad">
 					</div>
 				</div>
 				
 				<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 					<div class="form-group">
 						<label for="motivo">Motivo</label>
-						<select id="pmotivo" class="form-control ">
+						<select id="pmotivo" class="form-control " name="pmotivo">
 							<option value="" selected></option>
 							<option value="Perdida">Pérdida</option>
 							<option value="Ruptura">Ruptura</option>
@@ -66,7 +66,7 @@
 
 				<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 					<div class="form-group">
-						<button type="button" id="bt_add" class="btn btn-success">Agregar</button>
+						<button type="button" id="bt_add" class="btn btn-success" name="Agregar">Agregar</button>
 					</div>
 				</div>
 				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
@@ -97,7 +97,7 @@
 		<div class="col-lg-6 col-sm-6 col-xs-12" id="guardar">
 			<div class="form-group">
 				<input type="hidden" name="_token" value="{{csrf_token()}}">
-				<button class="btn btn-primary" type="submit">Guardar</button>
+				<button class="btn btn-primary" type="submit" name="Guardar">Guardar</button>
 
 				<button class="btn btn-danger" type="reset">Cancelar</button>
 			</div>

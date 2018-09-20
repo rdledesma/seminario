@@ -12,7 +12,7 @@
 @endpush
 
 
-<div class="modal fade modal-slide-in-right" aria-hidem="true" role="dialog" tabindex="-1" id="modal-delete-{{$ven->idventa}}">
+<div class="modal fade modal-slide-in-right" aria-hidem="true" role="dialog" tabindex="-1" id="modal-create-{{$ven->idventa}}">
 	{{Form::open(array('action'=>array('PagoCtaCorrienteController@store'),'method'=>'post'))}}
 		
     <div class="modal-dialog">
@@ -23,7 +23,7 @@
           
 		  
           <label for="saldo"><span></span> Saldo</label>
-		  <input type="text" name="saldo" class="form-control" id="saldo" placeholder="Paga Con" value = "{{$ven->saldo}}" readonly>
+		  <input type="text" name="saldo" class="form-control" id="saldo"  value = "{{$ven->saldo}}" readonly>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
           <form role="form">

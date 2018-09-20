@@ -29,7 +29,6 @@ class PagoCtaCorrienteController extends Controller
             ->select('v.idventa','v.fecha_venta','v.estado','v.total','v.saldo', DB::raw('CONCAT(p.nombre," ",p.numero_documento)AS persona'))
             ->where('p.nombre','LIKE','%'.$query.'%')
 			->where('v.tipo_pago','=','Cuenta Corriente')
-			->where('v.estado','!=','Anulado')
 			->orderBy('v.idventa','desc')
 			->paginate(7);
 			return view('pagos.corriente.index',["ventas"=>$ventas,"searchText"=>$query]);
@@ -49,6 +48,7 @@ class PagoCtaCorrienteController extends Controller
 		$pago->vuelto = $request->get('vuelto');
 		$mytime = Carbon::now('America/Argentina/Salta');
 		$pago->fecha=$mytime->toDateTimeString();
+		$pago->saldo = $request->get('saldo')-$request->get('importe'); 
 		$pago->save();
 
 		return Redirect::to('/pagos/corriente');
@@ -64,8 +64,9 @@ class PagoCtaCorrienteController extends Controller
 
 			$pagos = DB::table('pago as p')
 			->where('p.idventa','=',$id)
+			->orderBy('p.fecha' , 'desc')
 			->paginate(5);
-			return view('pagos.corriente.show',["venta"=>$venta, "pagos"=>$pagos]);
+			return view('pagos.corriente.show',["ven"=>$venta, "pagos"=>$pagos]);
 	}
 
 	public function edit($id)
@@ -77,7 +78,10 @@ class PagoCtaCorrienteController extends Controller
 
 	public function destroy($id)
 	{
-		return Redirect::to('pagos/corriente');
+		$pago = PagoCtaCorriente::findOrFail($id);
+		$pago->estado = 'Anulado'; 
+		$pago->update();
+		return Redirect::to('/pagos/corriente');
 	}
 
 	public function crear($id){

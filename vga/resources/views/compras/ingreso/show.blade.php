@@ -4,18 +4,21 @@
 	<div class="row">
 		<div class="col-lg-2 col-sm-1 col-md-1 col-xs-1">
 			<div class="form-group">
-				<h3>Ingreso: {{$ingreso->nro_factura}}</h3>
+				<h3 name="factura">Ingreso: {{$ingreso->nro_factura}}</h3>
 			</div>
 		</div>
 		<div class="col-lg-4 col-sm-4 col-md-3 col-xs-3">
 			<div class="form-group">
-			<h3>Fecha: {{$ingreso->fecha_ingreso}}</h3>
+			<h3 name="fecha">Fecha: <?php
+					$date = new DateTime($ingreso->fecha_ingreso);
+					echo $date->format('d-m-Y H:i');
+					?></h3>
 			</div>
 		</div>
 		
 		<div class="col-lg-3 col-sm-2 col-md- col-xs-2">
 			<div class="form-group">
-				<h3 class="bg-primary">Estado: {{$ingreso->estado}}</h3>
+				<h3 class="bg-primary" name="estado">Estado: {{$ingreso->estado}}</h3>
 			</div>
 		</div>
 		
@@ -24,13 +27,13 @@
 	<div class="row">
 	<div class="col-lg-6 col-sm-6 col-md-4 col-xs-4">
 			<div class="form-group">
-				<h3 for="Proveedor">Proveedor: {{$persona->nombre}} {{$persona->numero_documento}}</h3>
+				<h3 for="Proveedor" name="proveedor">Proveedor: {{$persona->nombre}} {{$persona->numero_documento}}</h3>
 			</div>
 		</div>
 		
 	<div class="col-lg-4 col-sm-6 col-md-4 col-xs-4">
 			<div class="form-group">
-				<h3 for="Proveedor">{{$persona->direccion}} {{$persona->email}}</h3>
+				<h3 for="direccion">{{$persona->direccion}} {{$persona->email}}</h3>
 			</div>
 		</div>
 		
@@ -61,11 +64,11 @@
 						<tbody>
 							@foreach($detalle as $det)
 							<tr>
-								<td>{{$det->articulo}}</td>
-								<td>{{$det->cantidad}}</td>
-								<td>{{$det->precio_compra}}</td>
-								<td>{{$det->precio_venta}}</td>
-								<td>{{$det->subtotal}}</td>
+								<td name="articulo">{{$det->articulo}}</td>
+								<td name="cantidad">{{$det->cantidad}}</td>
+								<td name="precio_compra">{{$det->precio_compra}}</td>
+								<td name="precio_venta">{{$det->precio_venta}}</td>
+								<td name="subtotal">{{$det->subtotal}}</td>
 							</tr>
 							@endforeach
 						</tbody>

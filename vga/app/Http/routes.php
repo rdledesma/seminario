@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::get('pagos/corriente/create/{idventa}','PagoCtaCorrienteController@crear');
@@ -37,3 +37,7 @@ Route::resource('ventas/cliente','ClienteController');
 Route::resource('ventas/venta','VentaController');
 
 Route::resource('pagos/corriente','PagoCtaCorrienteController');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

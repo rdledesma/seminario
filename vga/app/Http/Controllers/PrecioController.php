@@ -96,7 +96,7 @@ class PrecioController extends Controller
 			->join('detalle_precio as dp','dp.idlista_precio','=','p.idlista_precio')
 			->join('articulo as art','art.idarticulo','=','dp.idarticulo')
 			->join('escala as es','art.idescala','=','es.idescala')
-			->select('p.fecha_mod', DB::raw('CONCAT(art.codigo," ",art.nombre," ",es.nombre) AS articulo'),'dp.antiguo_precio','dp.nuevo_precio')
+			->select('p.fecha_mod as fecha', DB::raw('CONCAT(art.codigo," ",art.nombre," ",es.nombre) AS articulo'),'dp.antiguo_precio','dp.nuevo_precio')
 			->where('p.fecha_mod','LIKE','%'.$query.'%')
 			->orderBy('p.fecha_mod','desc')
 			->paginate(20);

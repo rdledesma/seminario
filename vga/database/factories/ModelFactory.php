@@ -21,6 +21,7 @@ $factory->define(vga\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(vga\Persona::class, function (Faker\Generator $faker) {
+    $faker->addProvider(new Faker\Provider\es_ES\Person($faker));
     return [
         'nombre' => $faker->name,
         'email' => $faker->safeEmail,

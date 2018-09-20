@@ -81,7 +81,7 @@
 				</div>
 				<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 					<div class="form-group">
-						<button type="button" id="bt_add" class="btn btn-success">Agregar</button>
+						<button type="button" id="bt_add" class="btn btn-success" name="agregar">Agregar</button>
 					</div>
 				</div>
 				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
@@ -112,7 +112,7 @@
 		<div class="col-lg-6 col-sm-6 col-xs-12" id="guardar">
 			<div class="form-group">
 				<input type="hidden" name="_token" value="{{csrf_token()}}">
-				<button class="btn btn-primary" type="submit">Guardar</button>
+				<button class="btn btn-primary" type="submit" name="Guardar">Guardar</button>
 
 				<button class="btn btn-danger" type="reset">Cancelar</button>
 			</div>

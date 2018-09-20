@@ -24,7 +24,9 @@ class EscalaController extends Controller
 		{
 			$query=trim($request->get('searchText'));
             $escalas=DB::table('escala')->where('nombre','LIKE','%'.$query.'%')
-			->where('estado','=','Activa')
+            ->where('estado','=','Activa')
+            ->orwhere('idescala','LIKE','%'.$query.'%')
+            ->where('estado','=','Activa')
 			->orderBy('idescala','desc')
 			->paginate(7);
 			return view('deposito.escala.index',["escalas"=>$escalas, "searchText"=>$query]);

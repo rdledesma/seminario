@@ -56,7 +56,7 @@
 				<div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 					<div class="form-group">
 						<label for="nuevo">Nuevo Precio</label>
-						<input type="number" min="0" value="0" name="descuento" id="pnuevo_precio" class="form-control" placeholder="P. Compra">
+						<input type="number" min="0" value="0" name="pnuevo_precio" id="pnuevo_precio" class="form-control" placeholder="P. Compra">
 					</div>
 				</div>
 				

@@ -22,7 +22,9 @@ class PagoCtaCorriente extends Model
         'importe',
         'fecha', 
         'paga_con',
-        'vuelto'
+        'saldo',
+        'vuelto',
+        'estado'
     ];
 
     //declaramos cuales son los campos que no se asignan al modelo

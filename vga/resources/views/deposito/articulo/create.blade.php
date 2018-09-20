@@ -34,7 +34,7 @@
 		<div class="col-lg-6 col-sm-6 col-xs-6">
 			<div class="form-group">
 				<label>Categoría</label>
-				<select name="idcategoria" class="form-control">
+				<select name="idcategoria" class="form-control" required>
 					@foreach($categorias as $cat)
 						<option value="{{$cat->idcategoria}}">{{$cat->nombre}}</option>
 					@endforeach
@@ -62,7 +62,7 @@
 		<div class="col-lg-3 col-sm-3 col-xs-3">
 			<div class="form-group">
 				<label for="escala">Escala</label>
-				<select name="idescala" class="form-control">
+				<select name="idescala" class="form-control" required>
 					@foreach($escalas as $esc)
 						<option value="{{$esc->idescala}}">{{$esc->nombre}}</option>
 					@endforeach
@@ -75,9 +75,9 @@
 			<div class="col-lg-3 col-sm-3 col-xs-6">
 				<div class="form-group">
 					<label for="perecedero">Perecedero</label>
-					<select name="perecedero" class="form-control">
+					<select name="perecedero" class="form-control" required>
 						<option value=1>SI</option>
-						<option value=0>NO</option>
+						<option value=0 selected>NO</option>
 					</select>
 				</div>
 				
